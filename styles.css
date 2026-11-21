@@ -1,0 +1,290 @@
+/* ============================================================
+   styles.css  -  all the styling for Expense List
+   Colours are declared once as variables at the top, so the
+   whole look changes from one place.
+   ============================================================ */
+
+:root {
+  --bg:          #F4F5F7;
+  --surface:     #FFFFFF;
+  --border:      #E1E4E8;
+  --text:        #1B1F23;
+  --text-soft:   #57606A;
+  --accent:      #1F6FEB;
+  --accent-dark: #1A5FCC;
+  --danger:      #B42318;
+  --danger-soft: #FEF3F2;
+  --radius:      10px;
+  --shadow:      0 1px 3px rgba(16, 24, 40, 0.06),
+                 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 32px 16px 64px;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+}
+
+.app {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ---- header ------------------------------------------------ */
+
+.app__header {
+  margin-bottom: 24px;
+}
+
+.app__title {
+  margin: 0 0 4px;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.app__tagline {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 15px;
+}
+
+/* ---- cards ------------------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.card__title {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* ---- form -------------------------------------------------- */
+
+.form__row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.field {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.field--amount {
+  flex: 0 1 150px;
+}
+
+.field__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.field__input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+.field__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.15);
+}
+
+.field__input::placeholder { color: #9AA4AF; }
+
+.money { position: relative; }
+
+.money__symbol {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-soft);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.money__input { padding-left: 26px; }
+
+.form__error {
+  margin: 12px 0 0;
+  padding: 9px 12px;
+  background: var(--danger-soft);
+  border: 1px solid #FDA29B;
+  border-radius: 8px;
+  color: var(--danger);
+  font-size: 14px;
+}
+
+.form__error[hidden] { display: none; }
+
+/* ---- buttons ----------------------------------------------- */
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+
+.btn--primary {
+  padding: 10px 22px;
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+.btn--primary:hover  { background: var(--accent-dark); }
+.btn--primary:active { transform: translateY(1px); }
+
+.btn--delete {
+  padding: 6px 12px;
+  font-size: 13px;
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-soft);
+}
+
+.btn--delete:hover {
+  background: var(--danger-soft);
+  border-color: #FDA29B;
+  color: var(--danger);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---- total ------------------------------------------------- */
+
+.card--total { padding: 18px 20px; }
+
+.total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.total__label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.total__value {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.total__count {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+/* ---- list -------------------------------------------------- */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.list__item:last-child { border-bottom: none; }
+
+.list__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.list__amount {
+  flex: 0 0 auto;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  margin: 0;
+  padding: 8px 0;
+  color: var(--text-soft);
+  font-size: 15px;
+}
+
+.empty[hidden] { display: none; }
+
+/* ---- footer ------------------------------------------------ */
+
+.app__footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.app__footer p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+/* ---- accessibility helper ---------------------------------- */
+
+/* Visible to screen readers, invisible on screen. Used for the
+   heading above the total, which the layout does not need but
+   the document outline does. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- small screens ----------------------------------------- */
+
+@media (max-width: 520px) {
+  .field, .field--amount { flex: 1 1 100%; }
+  .btn--primary { width: 100%; }
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expense List</title>
+<meta name="description" content="A small expense tracker that adds up what you spend and remembers the list in your browser.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main class="app">
+
+  <header class="app__header">
+    <h1 class="app__title">Expense List</h1>
+    <p class="app__tagline">Write down what you spend and see the total.</p>
+  </header>
+
+  <section class="card" aria-labelledby="add-heading">
+    <h2 class="card__title" id="add-heading">Add an expense</h2>
+
+    <form class="form" id="expense-form" novalidate>
+      <div class="form__row">
+
+        <div class="field">
+          <label class="field__label" for="expense-name">Name</label>
+          <input class="field__input"
+                 id="expense-name"
+                 name="name"
+                 type="text"
+                 placeholder="Coffee"
+                 maxlength="60"
+                 autocomplete="off">
+        </div>
+
+        <div class="field field--amount">
+          <label class="field__label" for="expense-amount">Amount</label>
+          <div class="money">
+            <span class="money__symbol" aria-hidden="true">$</span>
+            <input class="field__input money__input"
+                   id="expense-amount"
+                   name="amount"
+                   type="text"
+                   inputmode="decimal"
+                   placeholder="4.50"
+                   autocomplete="off">
+          </div>
+        </div>
+
+        <button class="btn btn--primary" type="submit">Add</button>
+
+      </div>
+
+      <p class="form__error" id="form-error" role="alert" aria-live="polite" hidden></p>
+    </form>
+  </section>
+
+  <section class="card card--total" aria-labelledby="total-heading">
+    <h2 class="sr-only" id="total-heading">Total spent</h2>
+    <div class="total">
+      <span class="total__label">Total</span>
+      <span class="total__value" id="total-value" aria-live="polite">$0.00</span>
+    </div>
+    <p class="total__count" id="total-count">No expenses yet</p>
+  </section>
+
+  <section class="card" aria-labelledby="list-heading">
+    <h2 class="card__title" id="list-heading">Expenses</h2>
+    <ul class="list" id="expense-list"></ul>
+    <p class="empty" id="empty-state">Nothing here yet. Add your first expense above.</p>
+  </section>
+
+  <footer class="app__footer">
+    <p>Your list is saved in this browser only, using localStorage.
+       It is never sent anywhere.</p>
+  </footer>
+
+</main>
+
+<!-- Loaded in dependency order: the rules, then storage, then the
+     screen. ui.js is last because it uses the other two. -->
+<script src="js/domain.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+
+</body>
+</html>
